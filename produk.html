@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Smart Plant Catalog | SANDEF FARM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2c5926",
+                        "background-light": "#f6f7f6",
+                        "background-dark": "#161d15",
+                    },
+                    fontFamily: {
+                        "display": ["Work Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Work Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#131613] dark:text-white antialiased">
+<div class="layout-container flex flex-col min-h-screen">
+<!-- Header -->
+<div class="sticky top-0 z-50 w-full bg-white/95 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-100 dark:border-[#2c3a2a]">
+<div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-4">
+<header class="flex items-center justify-between gap-4">
+<div class="flex items-center gap-10">
+<div class="flex items-center gap-2 text-primary dark:text-accent-leaf">
+<span class="material-symbols-outlined text-3xl font-light">potted_plant</span>
+<h2 class="text-xl font-extrabold tracking-tighter font-display uppercase">SANDEF FARM</h2>
+</div>
+<nav class="hidden lg:flex items-center gap-8">
+<a class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors" href="index.html">Home</a>
+<a class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors" href="produk.html">Produk</a>
+<a class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors" href="tentang.html">Tentang Kami</a>
+</nav>
+</div>
+</header>
+</div>
+</div>
+<main class="flex-1 max-w-[1280px] mx-auto w-full px-4 md:px-10 lg:px-40 py-6">
+<!-- Breadcrumbs -->
+<nav class="flex flex-wrap gap-2 mb-6 items-center">
+<a class="text-[#6e7f6c] text-sm font-medium hover:text-primary" href="index.html">Home</a>
+<span class="text-[#6e7f6c] text-sm">/</span>
+<a class="text-[#6e7f6c] text-sm font-medium hover:text-primary" href="#">Catalog</a>
+<span class="text-[#6e7f6c] text-sm">/</span>
+<span class="text-primary text-sm font-bold">Dracaena</span>
+</nav>
+<!-- Page Heading -->
+<div class="mb-8">
+<h1 class="text-[#131613] dark:text-white text-3xl md:text-4xl font-black leading-tight tracking-tight mb-2">Global Ornamental Plant Collection</h1>
+<p class="text-[#6e7f6c] text-base max-w-2xl">Direct exporters of premium Indonesian flora. Explore our curated selection of export-ready ornamental plants from Sukabumi.</p>
+</div>
+<div class="flex flex-col md:flex-row gap-8">
+<!-- Filter Sidebar -->
+<aside class="w-full md:w-64 flex-shrink-0">
+<div class="sticky top-24 flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<h3 class="text-[#131613] dark:text-white text-lg font-bold">Filters</h3>
+<p class="text-[#6e7f6c] text-sm">Refine your plant search</p>
+</div>
+<!-- Sidebar Navigation -->
+<div class="flex flex-col gap-1">
+<div onclick="filterProducts('all')" class="flex items-center gap-3 px-3 py-2 cursor-pointer hover:bg-primary/10 rounded-lg group transition-colors">
+<span class="material-symbols-outlined text-primary">eco</span>
+<p class="text-[#131613] dark:text-white text-sm font-medium">All Plants</p>
+</div>
+<div onclick="filterProducts('dracaena')" class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary text-white transition-colors">
+<span class="material-symbols-outlined">park</span>
+<p class="text-sm font-medium">Dracaena</p>
+</div>
+<div onclick="filterProducts('compacta')" class="flex items-center gap-3 px-3 py-2 cursor-pointer hover:bg-primary/10 rounded-lg group transition-colors">
+<span class="material-symbols-outlined text-[#131613] dark:text-white">move_selection_right</span>
+<p class="text-[#131613] dark:text-white text-sm font-medium">Compacta</p>
+</div>
+<div onclick="filterProducts('lucky-bamboo')" class="flex items-center gap-3 px-3 py-2 cursor-pointer hover:bg-primary/10 rounded-lg group transition-colors">
+<span class="material-symbols-outlined text-[#131613] dark:text-white">grass</span>
+<p class="text-[#131613] dark:text-white text-sm font-medium">Lucky Bamboo</p>
+</div>
+</div>
+<!-- Filter Accordions -->
+<div class="flex flex-col border-t border-[#dfe3de] dark:border-[#2c3a2a]">
+<details class="group py-3" open="">
+<summary class="flex cursor-pointer items-center justify-between gap-4 list-none">
+<p class="text-[#131613] dark:text-white text-sm font-bold uppercase tracking-wider">Size</p>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="mt-3 flex flex-col gap-2">
+<label class="flex items-center gap-2 cursor-pointer hover:bg-gray-50 dark:hover:bg-[#2c3a2a] p-2 rounded transition-colors">
+<input onchange="applyFilters()" class="rounded border-gray-300 text-primary focus:ring-primary h-4 w-4" type="checkbox" data-filter="size" value="small"/>
+<span class="text-sm text-[#131613] dark:text-gray-300">Small (Potted)</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer hover:bg-gray-50 dark:hover:bg-[#2c3a2a] p-2 rounded transition-colors">
+<input onchange="applyFilters()" class="rounded border-gray-300 text-primary focus:ring-primary h-4 w-4" type="checkbox" data-filter="size" value="medium"/>
+<span class="text-sm text-[#131613] dark:text-gray-300">Medium</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer hover:bg-gray-50 dark:hover:bg-[#2c3a2a] p-2 rounded transition-colors">
+<input onchange="applyFilters()" class="rounded border-gray-300 text-primary focus:ring-primary h-4 w-4" type="checkbox" data-filter="size" value="large"/>
+<span class="text-sm text-[#131613] dark:text-gray-300">Large (Specimen)</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer hover:bg-gray-50 dark:hover:bg-[#2c3a2a] p-2 rounded transition-colors">
+<input onchange="applyFilters()" class="rounded border-gray-300 text-primary focus:ring-primary h-4 w-4" type="checkbox" data-filter="size" value="bulk"/>
+<span class="text-sm text-[#131613] dark:text-gray-300">Bulk Cane</span>
+</label>
+</div>
+</details>
+<details class="group py-3 border-t border-[#dfe3de] dark:border-[#2c3a2a]">
+<summary class="flex cursor-pointer items-center justify-between gap-4 list-none">
+<p class="text-[#131613] dark:text-white text-sm font-bold uppercase tracking-wider">Usage</p>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="mt-3 flex flex-col gap-2">
+<label class="flex items-center gap-2 cursor-pointer hover:bg-gray-50 dark:hover:bg-[#2c3a2a] p-2 rounded transition-colors">
+<input onchange="applyFilters()" class="rounded border-gray-300 text-primary focus:ring-primary h-4 w-4" type="checkbox" data-filter="usage" value="indoor"/>
+<span class="text-sm text-[#131613] dark:text-gray-300">Indoor</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer hover:bg-gray-50 dark:hover:bg-[#2c3a2a] p-2 rounded transition-colors">
+<input onchange="applyFilters()" class="rounded border-gray-300 text-primary focus:ring-primary h-4 w-4" type="checkbox" data-filter="usage" value="outdoor"/>
+<span class="text-sm text-[#131613] dark:text-gray-300">Outdoor</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer hover:bg-gray-50 dark:hover:bg-[#2c3a2a] p-2 rounded transition-colors">
+<input onchange="applyFilters()" class="rounded border-gray-300 text-primary focus:ring-primary h-4 w-4" type="checkbox" data-filter="usage" value="low-light"/>
+<span class="text-sm text-[#131613] dark:text-gray-300">Low Light</span>
+</label>
+</div>
+</details>
+<div class="mt-4 pt-4 border-t border-[#dfe3de] dark:border-[#2c3a2a]">
+<button onclick="clearAllFilters()" class="w-full bg-gray-100 dark:bg-[#2c3a2a] text-[#131613] dark:text-white py-2 rounded-lg font-medium text-sm hover:bg-gray-200 dark:hover:bg-[#3a4a38] transition-colors">
+                Clear All Filters
+            </button>
+</div>
+</div>
+</div>
+</aside>
+<!-- Product Grid -->
+<div class="flex-1">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="productGrid">
+<!-- Products will be dynamically loaded here -->
+</div>
+</div>
+</div>
+</main>
+<!-- Pagination -->
+<div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-12">
+<div class="flex justify-center items-center gap-2">
+<button class="flex items-center justify-center h-10 w-10 rounded-lg border border-gray-200 hover:bg-primary hover:text-white transition-all duration-200">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="h-10 w-10 rounded-lg bg-primary text-white font-bold text-sm hover:bg-primary/90 transition-all duration-200">1</button>
+<button class="h-10 w-10 rounded-lg border border-gray-200 hover:bg-gray-100 transition-all duration-200">2</button>
+<button class="h-10 w-10 rounded-lg border border-gray-200 hover:bg-gray-100 transition-all duration-200">3</button>
+<button class="flex items-center justify-center h-10 w-10 rounded-lg border border-gray-200 hover:bg-primary hover:text-white transition-all duration-200">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-white dark:bg-background-dark border-t border-[#dfe3de] dark:border-[#2c3a2a] py-12 px-4 md:px-10 lg:px-40">
+<div class="max-w-[1280px] mx-auto w-full grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="col-span-1 md:col-span-2">
+<div class="flex items-center gap-2 text-primary mb-4">
+<span class="material-symbols-outlined">potted_plant</span>
+<h2 class="text-[#131613] dark:text-white text-xl font-black">SANDEF FARM</h2>
+</div>
+<p class="text-[#6e7f6c] text-sm max-w-sm">Premium ornamental plant exporter based in Sukabumi, Indonesia. We provide global shipping with certified phytosanitary standards.</p>
+</div>
+<div>
+<h4 class="text-[#131613] dark:text-white font-bold mb-4">Quick Links</h4>
+<ul class="flex flex-col gap-2 text-sm text-[#6e7f6c]">
+<li><a class="hover:text-primary" href="#">Catalog</a></li>
+<li><a class="hover:text-primary" href="#">Bulk Inquiries</a></li>
+<li><a class="hover:text-primary" href="#">Shipping Info</a></li>
+<li><a class="hover:text-primary" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-[#131613] dark:text-white font-bold mb-4">Contact</h4>
+<ul class="flex flex-col gap-2 text-sm text-[#6e7f6c]">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">location_on</span> Sukabumi, West Java, ID</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">mail</span> contact@sandeffarm.com</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">phone</span> +62 812 3456 7890</li>
+</ul>
+</div>
+</div>
+<div class="max-w-[1280px] mx-auto w-full border-t border-[#dfe3de] dark:border-[#2c3a2a] mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-[#6e7f6c] text-xs">© 2024 CV. SANDEF FARM. All rights reserved.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-[#6e7f6c] cursor-pointer hover:text-primary">public</span>
+<button onclick="toggleLanguageMenu()">
+    <span class="hidden sm:inline">ID</span>
+    <span class="material-symbols-outlined text-[#6e7f6c] cursor-pointer hover:text-primary">language</span>
+</button>
+<div id="languageMenu" class="hidden absolute top-full left-0 bg-white dark:bg-background-dark border border-[#dfe3de] dark:border-[#2c3a2a] py-2 px-4 w-40 text-sm text-[#6e7f6c]">
+    <button onclick="changeLanguage('id')">ID</button>
+    <button onclick="changeLanguage('en')">EN</button>
+    <button onclick="changeLanguage('zh')">中文</button>
+    <button onclick="changeLanguage('ar')">AR</button>
+    <button onclick="changeLanguage('es')">ES</button>
+</div>
+<span class="material-symbols-outlined text-[#6e7f6c] cursor-pointer hover:text-primary">eco</span>
+</div>
+</div>
+</footer>
+<script>
+// Product data from dataset
+const productData = {
+    'sanderiana-sangkat': [
+        {
+            name: 'Draceana Fragrance 25cm',
+            price: 1.50,
+            size: 'small',
+            usage: 'indoor',
+            images: [
+                'dataset/Sanderiana sangkat/Draceana Fragrance 25cm 1,5$/Draceana Fragrance 25cm 1,5$.jpeg',
+                'dataset/Sanderiana sangkat/Draceana Fragrance 25cm 1,5$/Draceana Fragrance 25cm 1,5$.png',
+                'dataset/Sanderiana sangkat/Draceana Fragrance 25cm 1,5$/Draceana Fragrance 25cm 1,5$1.png'
+            ]
+        },
+        {
+            name: 'Draceana fragrance 60cm',
+            price: 3.50,
+            size: 'medium',
+            usage: 'indoor',
+            images: [
+                'dataset/Sanderiana sangkat/Draceana fragrance 60cm 3,5$/Draceana fragrance 60cm 3,5$.jpeg',
+                'dataset/Sanderiana sangkat/Draceana fragrance 60cm 3,5$/Draceana fragrance 60cm 3,5$1.jpeg',
+                'dataset/Sanderiana sangkat/Draceana fragrance 60cm 3,5$/Draceana fragrance 60cm 3,5$2.jpeg',
+                'dataset/Sanderiana sangkat/Draceana fragrance 60cm 3,5$/Draceana fragrance 60cm 3,5$3.jpeg'
+            ]
+        },
+        {
+            name: 'Draceana fragrance 80cm',
+            price: 5.00,
+            size: 'large',
+            usage: 'indoor outdoor',
+            images: [
+                'dataset/Sanderiana sangkat/Draceana fragrance 80cm 5$/Draceana fragrance 80cm 5$.jpeg',
+                'dataset/Sanderiana sangkat/Draceana fragrance 80cm 5$/Draceana fragrance 80cm 5$1.jpeg',
+                'dataset/Sanderiana sangkat/Draceana fragrance 80cm 5$/Draceana fragrance 80cm 5$2.jpeg',
+                'dataset/Sanderiana sangkat/Draceana fragrance 80cm 5$/Draceana fragrance 80cm 5$3.png',
+                'dataset/Sanderiana sangkat/Draceana fragrance 80cm 5$/Draceana fragrance 80cm 5$4.jpeg'
+            ]
+        }
+    ],
+    'compakta': [
+        {
+            name: 'Draceana Compakta 50cm',
+            price: 2.50,
+            size: 'small',
+            usage: 'indoor',
+            images: [
+                'dataset/compakta/Draceana Compakta 50cm 2,5$/Draceana Compakta 50cm 2,5$.png',
+                'dataset/compakta/Draceana Compakta 50cm 2,5$/Draceana Compakta 50cm 2,5$1.png'
+            ]
+        },
+        {
+            name: 'Draceana Compakta 70cm',
+            price: 4.00,
+            size: 'medium',
+            usage: 'indoor',
+            images: [
+                'dataset/compakta/Draceana Compakta 70cm 4$/Draceana Compakta 70cm 4$.png',
+                'dataset/compakta/Draceana Compakta 70cm 4$/Draceana Compakta 70cm 4$1.jpg',
+                'dataset/compakta/Draceana Compakta 70cm 4$/Draceana Compakta 70cm 4$2.jpg',
+                'dataset/compakta/Draceana Compakta 70cm 4$/Draceana Compakta 70cm 4$3.jpg'
+            ]
+        },
+        {
+            name: 'Draceana Compakta 100cm',
+            price: 7.00,
+            size: 'large',
+            usage: 'indoor outdoor',
+            images: [
+                'dataset/compakta/Draceana Compakta 100cm 7$/Draceana Compakta 100cm 7$.png',
+                'dataset/compakta/Draceana Compakta 100cm 7$/Draceana Compakta 100cm 7$1.png',
+                'dataset/compakta/Draceana Compakta 100cm 7$/Draceana Compakta 100cm 7$2.png',
+                'dataset/compakta/Draceana Compakta 100cm 7$/Draceana Compakta 100cm 7$3.png',
+                'dataset/compakta/Draceana Compakta 100cm 7$/Draceana Compakta 100cm 7$4.png'
+            ]
+        }
+    ],
+    'drecana': [
+        {
+            name: 'Draceana Sanderiana sangkar 20cm',
+            price: 2.00,
+            size: 'small',
+            usage: 'indoor low-light',
+            images: [
+                'dataset/drecana/Draceana Sanderiana sangkar 20cm 2$/Draceana Sanderiana sangkar 20cm 2$.png',
+                'dataset/drecana/Draceana Sanderiana sangkar 20cm 2$/Draceana Sanderiana sangkar 20cm 2$1.png',
+                'dataset/drecana/Draceana Sanderiana sangkar 20cm 2$/Draceana Sanderiana sangkar 20cm 2$3.png',
+                'dataset/drecana/Draceana Sanderiana sangkar 20cm 2$/Draceana Sanderiana sangkar 20cm 2$4.png'
+            ]
+        },
+        {
+            name: 'Draceana Sanderiana sangkar 60cm',
+            price: 5.50,
+            size: 'large',
+            usage: 'indoor outdoor',
+            images: [
+                'dataset/drecana/Draceana Sanderiana sangkar 60cm 5,5$/Draceana Sanderiana sangkar 60cm 5,5$ 1.png',
+                'dataset/drecana/Draceana Sanderiana sangkar 60cm 5,5$/Draceana Sanderiana sangkar 60cm 5,5$ 2.png',
+                'dataset/drecana/Draceana Sanderiana sangkar 60cm 5,5$/Draceana Sanderiana sangkar 60cm 5,5$ 3.png',
+                'dataset/drecana/Draceana Sanderiana sangkar 60cm 5,5$/Draceana Sanderiana sangkar 60cm 5,5$.png'
+            ]
+        },
+        {
+            name: 'Draceana Sanderiana sangkar Tb 20cm',
+            price: 2.00,
+            size: 'small',
+            usage: 'indoor low-light',
+            images: [
+                'dataset/drecana/Draceana Sanderiana sangkar Tb 20cm 2$/Draceana Sanderiana sangkar Tb 20cm 2$.jpeg',
+                'dataset/drecana/Draceana Sanderiana sangkar Tb 20cm 2$/Draceana Sanderiana sangkar Tb 20cm 2$1.jpeg'
+            ]
+        },
+        {
+            name: 'Draceana Sanderiana sangkat 100cm',
+            price: 10.00,
+            size: 'bulk',
+            usage: 'outdoor',
+            images: [
+                'dataset/drecana/Draceana Sanderiana sangkat 100cm 10$/Draceana Sanderiana sangkat 100cm 10$.jpeg',
+                'dataset/drecana/Draceana Sanderiana sangkat 100cm 10$/Draceana Sanderiana sangkat 100cm 10$1.jpeg',
+                'dataset/drecana/Draceana Sanderiana sangkat 100cm 10$/Draceana Sanderiana sangkat 100cm 10$2.jpeg',
+                'dataset/drecana/Draceana Sanderiana sangkat 100cm 10$/Draceana Sanderiana sangkat 100cm 10$3.jpeg'
+            ]
+        }
+    ]
+};
+
+// Load products dynamically
+function loadProducts(category = 'all') {
+    const productGrid = document.getElementById('productGrid');
+    productGrid.innerHTML = '';
+    
+    let productsToShow = [];
+    
+    if (category === 'all') {
+        Object.keys(productData).forEach(cat => {
+            productsToShow = productsToShow.concat(productData[cat]);
+        });
+    } else if (category === 'dracaena') {
+        productsToShow = productData['sanderiana-sangkat'].concat(productData['drecana']);
+    } else if (category === 'compacta') {
+        productsToShow = productData['compakta'];
+    } else if (category === 'lucky-bamboo') {
+        productsToShow = productData['drecana'].filter(p => p.name.includes('Tb'));
+    }
+    
+    productsToShow.forEach((product, index) => {
+        const productCard = createProductCard(product, index);
+        productGrid.appendChild(productCard);
+    });
+    
+    updateResultsCount(productsToShow.length);
+}
+
+// Create product card HTML
+function createProductCard(product, index) {
+    const card = document.createElement('div');
+    card.className = 'product-card group relative bg-white product-card-shadow rounded-2xl overflow-hidden flex flex-col transition-transform hover:-translate-y-1';
+    card.setAttribute('data-category', 'dracaena');
+    card.setAttribute('data-size', product.size);
+    card.setAttribute('data-usage', product.usage);
+    
+    const firstImage = product.images[0];
+    
+    card.innerHTML = `
+        <div class="relative w-full aspect-[4/5] overflow-hidden">
+            <img alt="${product.name}" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110" src="${firstImage}"/>
+            <div class="absolute top-4 left-4">
+                <span class="bg-primary text-white text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Export Grade A+</span>
+            </div>
+        </div>
+        <div class="p-6 flex flex-col flex-1">
+            <p class="text-[10px] font-bold text-primary/60 uppercase tracking-widest mb-1">Premium Quality</p>
+            <h3 class="text-lg font-extrabold font-display mb-4">${product.name}</h3>
+            <div class="mt-auto flex items-center justify-between">
+                <p class="text-xl font-black text-primary">$${product.price.toFixed(2)} <span class="text-[10px] font-normal text-gray-400">USD</span></p>
+                <button class="size-10 rounded-full border border-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+                    <span class="material-symbols-outlined text-xl">shopping_cart</span>
+                </button>
+            </div>
+        </div>
+    `;
+    
+    return card;
+}
+
+// Language Menu Functions
+function toggleLanguageMenu() {
+    const menu = document.getElementById('languageMenu');
+    menu.classList.toggle('hidden');
+}
+
+function changeLanguage(lang) {
+    const button = document.querySelector('button[onclick="toggleLanguageMenu()"]');
+    const span = button.querySelector('span.hidden.sm\\:inline');
+    const menu = document.getElementById('languageMenu');
+
+    const langCodes = {
+        'id': 'ID',
+        'en': 'EN', 
+        'zh': '中文',
+        'ar': 'AR',
+        'es': 'ES'
+    };
+
+    span.textContent = langCodes[lang];
+    menu.classList.add('hidden');
+    console.log('Language changed to:', lang);
+}
+
+// Close menu when clicking outside
+document.addEventListener('click', function(event) {
+    const menu = document.getElementById('languageMenu');
+    const button = document.querySelector('button[onclick="toggleLanguageMenu()"]');
+    if (!menu.contains(event.target) && !button.contains(event.target)) {
+        menu.classList.add('hidden');
+    }
+});
+
+// Filter Products Function
+function filterProducts(category) {
+    // Remove active class from all navigation items
+    const navItems = document.querySelectorAll('.flex.items-center.gap-3.px-3.py-2');
+    navItems.forEach(item => {
+        item.classList.remove('bg-primary', 'text-white');
+        item.classList.add('hover:bg-primary/10');
+        item.querySelector('span').classList.remove('text-white');
+        item.querySelector('span').classList.add('text-[#131613]', 'dark:text-white');
+        item.querySelector('p').classList.remove('text-white');
+        item.querySelector('p').classList.add('text-[#131613]', 'dark:text-white');
+    });
+    
+    // Add active class to clicked item
+    event.currentTarget.classList.add('bg-primary', 'text-white');
+    event.currentTarget.classList.remove('hover:bg-primary/10');
+    event.currentTarget.querySelector('span').classList.remove('text-[#131613]', 'dark:text-white');
+    event.currentTarget.querySelector('span').classList.add('text-white');
+    event.currentTarget.querySelector('p').classList.remove('text-[#131613]', 'dark:text-white');
+    event.currentTarget.querySelector('p').classList.add('text-white');
+    
+    // Load products based on category
+    loadProducts(category);
+    
+    // Update page heading
+    const headings = {
+        'all': 'Global Ornamental Plant Collection',
+        'dracaena': 'Dracaena Collection',
+        'compacta': 'Compacta Series',
+        'lucky-bamboo': 'Lucky Bamboo Series'
+    };
+    
+    const pageHeading = document.querySelector('h1.text-3xl');
+    if (pageHeading) {
+        pageHeading.textContent = headings[category] || headings['all'];
+    }
+    
+    console.log('Filtering products by:', category);
+}
+
+// Apply Filters Function
+function applyFilters() {
+    const checkedFilters = {
+        size: [],
+        usage: []
+    };
+    
+    // Get all checked checkboxes
+    document.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+        const filterType = checkbox.getAttribute('data-filter');
+        const filterValue = checkbox.getAttribute('value');
+        
+        if (filterType && filterValue) {
+            checkedFilters[filterType].push(filterValue);
+        }
+    });
+    
+    // Filter products
+    const products = document.querySelectorAll('.product-card');
+    let visibleCount = 0;
+    
+    products.forEach(product => {
+        let shouldShow = true;
+        
+        // Check size filters
+        if (checkedFilters.size.length > 0) {
+            const productSize = product.getAttribute('data-size');
+            if (!productSize || !checkedFilters.size.includes(productSize)) {
+                shouldShow = false;
+            }
+        }
+        
+        // Check usage filters (support multiple usage values)
+        if (checkedFilters.usage.length > 0 && shouldShow) {
+            const productUsage = product.getAttribute('data-usage');
+            if (productUsage) {
+                const usageArray = productUsage.split(' ');
+                const hasMatchingUsage = checkedFilters.usage.some(filter => usageArray.includes(filter));
+                if (!hasMatchingUsage) {
+                    shouldShow = false;
+                }
+            } else {
+                shouldShow = false;
+            }
+        }
+        
+        if (shouldShow) {
+            product.style.display = 'block';
+            product.style.animation = 'fadeIn 0.5s ease-in-out';
+            visibleCount++;
+        } else {
+            product.style.display = 'none';
+        }
+    });
+    
+    // Update results count
+    updateResultsCount(visibleCount);
+    
+    console.log('Applied filters:', checkedFilters, 'Visible products:', visibleCount);
+}
+
+// Clear All Filters Function
+function clearAllFilters() {
+    // Uncheck all checkboxes
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.checked = false;
+    });
+    
+    // Show all products
+    const products = document.querySelectorAll('.product-card');
+    products.forEach(product => {
+        product.style.display = 'block';
+        product.style.animation = 'fadeIn 0.5s ease-in-out';
+    });
+    
+    // Update results count
+    updateResultsCount(products.length);
+    
+    console.log('All filters cleared');
+}
+
+// Update Results Count Function
+function updateResultsCount(count) {
+    let resultsElement = document.querySelector('.results-count');
+    
+    if (!resultsElement) {
+        // Create results element if it doesn't exist
+        const pageHeading = document.querySelector('h1.text-3xl');
+        if (pageHeading) {
+            const resultsContainer = document.createElement('div');
+            resultsContainer.className = 'flex items-center justify-between mb-6';
+            resultsContainer.innerHTML = `
+                <h1 class="text-3xl font-black leading-tight tracking-tight mb-2">Global Ornamental Plant Collection</h1>
+                <span class="results-count text-sm text-[#6e7f6c]">${count} products found</span>
+            `;
+            pageHeading.parentNode.replaceChild(resultsContainer, pageHeading);
+        }
+    } else {
+        resultsElement.textContent = `${count} products found`;
+    }
+}
+
+// Initialize page
+document.addEventListener('DOMContentLoaded', function() {
+    loadProducts('all');
+});
+</script>
+
+</body></html>
